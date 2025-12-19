@@ -1,5 +1,5 @@
 import type { Response } from 'express';
-import { once } from 'node:events';
+import { once } from 'events';
 
 export function setSseHeaders(res: Response) {
   res.setHeader('Content-Type', 'text/event-stream');
