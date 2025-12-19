@@ -66,6 +66,14 @@ export async function streamChat(req: Request, res: Response) {
       return;
     }
 
+    /* check if the session is completed */
+    if (sessionData.completed) {
+      res.status(200).json({
+        error: "Chat generation session completed",
+      });
+      return;
+    }
+
     //? resolve the resume index
     const resumeFromIndex = resolveResumeIndex({
       storedNextIndex: sessionData.nextChunkIndex,
