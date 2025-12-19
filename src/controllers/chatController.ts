@@ -8,8 +8,7 @@ import {
 } from "../services/sessionService.js";
 import { startChatGenerationStream } from "../services/chatStreamService.js";
 import { logger } from "../services/logger.js";
-import { parseIndexParam, resolveResumeIndex } from "../utils";
-import { setSseHeaders, sseWrite } from "../services/sseService.js";
+import { parseIndexParam, resolveResumeIndex } from "../utils/index.js";
 
 export async function postChatMessage(req: Request, res: Response) {
   try {
@@ -66,7 +65,7 @@ export async function streamChat(req: Request, res: Response) {
       });
       return;
     }
- 
+
     //? resolve the resume index
     const resumeFromIndex = resolveResumeIndex({
       storedNextIndex: sessionData.nextChunkIndex,
